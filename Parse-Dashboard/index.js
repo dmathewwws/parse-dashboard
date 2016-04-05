@@ -66,7 +66,7 @@ if (!program.config && !process.env.PARSE_DASHBOARD_CONFIG) {
 
     configFile = path.join(__dirname, 'parse-dashboard-config.json');
 
-    console.log(`Inside NOTT configServerURL with configFile :${configFile}/`);
+    console.log(`Inside NOTT configServerURL with configFile :${configFile}`);
   }
 } else if (!program.config && process.env.PARSE_DASHBOARD_CONFIG) {
 
@@ -107,8 +107,7 @@ p.then(config => {
   app.listen(port);
 
   console.log(`The dashboard is now available at http://localhost:${port}/`);
-  console.log(`The configServerURL is ${configServerURL}/`);
-  console.log(`The configAppId is ${configAppId}/`);
+
 }, error => {
   if (error instanceof SyntaxError) {
     console.log('Your config file contains invalid JSON. Exiting.');
