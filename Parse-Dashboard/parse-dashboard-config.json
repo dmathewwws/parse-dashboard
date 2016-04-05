@@ -1,5 +1,12 @@
 {
   "apps": [
-
+    {
+      "serverURL": "https://api.parse.com/1",
+      "appId": "G7bZDYGQRiUvcscDjD1mtKLPqRAxcv4kkNJTWqbk",
+      "masterKey": "BqhfEsnYq6ODxyHnO4iGqga8owlO4gUn356wiej9",
+      "javascriptKey": "mIvmhgPW5UUoGMuIqNi0WZuwTGwKZxBFUhEQQ37J",
+      "restKey": "2tOJpoL4ELtDbVric3DgDdZGYFGUU9Dv22dVcyNa",
+      "appName": "PhysioApp"
+    }
   ]
 }

@@ -37,6 +37,9 @@ let configUserId = program.userId || process.env.PARSE_DASHBOARD_USER_ID;
 let configUserPassword = program.userPassword || process.env.PARSE_DASHBOARD_USER_PASSWORD;
 if (!program.config && !process.env.PARSE_DASHBOARD_CONFIG) {
   if (configServerURL && configMasterKey && configAppId) {
+
+      console.log('Inside configServerURL && configMasterKey && configAppId');
+
     configFromCLI = {
       data: {
         apps: [
@@ -58,9 +61,17 @@ if (!program.config && !process.env.PARSE_DASHBOARD_CONFIG) {
       ];
     }
   } else if (!configServerURL && !configMasterKey && !configAppName) {
+
+
+
     configFile = path.join(__dirname, 'parse-dashboard-config.json');
+
+    console.log(`Inside NOTT configServerURL with configFile :${configFile}/`);
   }
 } else if (!program.config && process.env.PARSE_DASHBOARD_CONFIG) {
+
+    console.log('Inside some other config');
+
   configFromCLI = {
     data: JSON.parse(process.env.PARSE_DASHBOARD_CONFIG)
   };
@@ -96,6 +107,8 @@ p.then(config => {
   app.listen(port);
 
   console.log(`The dashboard is now available at http://localhost:${port}/`);
+  console.log(`The configServerURL is ${configServerURL}/`);
+  console.log(`The configAppId is ${configAppId}/`);
 }, error => {
   if (error instanceof SyntaxError) {
     console.log('Your config file contains invalid JSON. Exiting.');
