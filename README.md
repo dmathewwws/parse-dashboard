@@ -1,5 +1,8 @@
 # Parse Dashboard
 
+[![Build Status](https://img.shields.io/travis/ParsePlatform/parse-dashboard/master.svg?style=flat)](https://travis-ci.org/ParsePlatform/parse-dashboard)
+[![npm version](https://img.shields.io/npm/v/parse-dashboard.svg?style=flat)](https://www.npmjs.com/package/parse-dashboard)
+
 Parse Dashboard is a standalone dashboard for managing your Parse apps. You can use it to manage your [Parse Server](https://github.com/ParsePlatform/parse-server) apps and your apps that are running on [Parse.com](https://Parse.com).
 
 # Getting Started
@@ -16,7 +19,7 @@ You can launch the dashboard for an app with a single command by supplying an ap
 parse-dashboard --appId yourAppId --masterKey yourMasterKey --serverURL "https://example.com/parse" --appName optionalName
 ```
 
-You can then visit the dashboard in your browser at http://localhost:4040. If you want to use a different port you can supply the --port option to parse-dashboard. You can use anything you want as the app name, or leave it out in which case the app ID will be used.
+You can then visit the dashboard in your browser at http://localhost:4040. You may set the host, port and mount path by supplying the `--host`, `--port` and `--mountPath` options to parse-dashboard. You can use anything you want as the app name, or leave it out in which case the app ID will be used.
 
 If you want to manage multiple apps from the same dashboard, you can start the dashboard with a config file. For example, you could put your info into a file called `parse-dashboard-config.json` and then start the dashboard using `parse-dashboard --config parse-dashboard-config.json`. The file should match the following format:
 
@@ -87,6 +90,23 @@ In order to securely deploy the dashboard without leaking your apps master key, 
 ```
 
 The deployed dashboard detects if you are using a secure connection. If you are deploying the dashboard behind a load balancer or proxy that does early SSL termination, then the app won't be able to detect that the connection is secure. In this case, you can start the dashboard with the `--allowInsecureHTTP=1` option. You will then be responsible for ensureing that your proxy or load balancer only allows HTTPS.
+
+## Separating app access based on user identity
+
+If you want to restrict apps based on user identity, you can update your config file to match the following format:
+
+```
+{
+  "apps": [ … ],
+  "users": [
+     {
+       "user":"user1",
+       "pass":"pass1",
+       "apps": [{"appId": "myAppId"}, {"appId": "myAppId"}]
+    }
+  ]
+}
+```
 
 ## Run with Docker
 
